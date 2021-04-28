@@ -11,3 +11,5 @@ const Page = (props) => {
 }
 
 export default Page
+
+// using composition instead of inheritance

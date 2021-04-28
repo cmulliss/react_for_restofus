@@ -1,11 +1,20 @@
-import React from 'react'
-
+import React, { useState } from 'react'
 import Page from './Page'
+import Axios from 'axios'
 
-// wide for this page only
-const HomeGuest = () => {
-	function handleSubmit(e) {
-		e.preventDefault(alert('hello'))
+function HomeGuest() {
+	const [username, setUsername] = useState()
+	const [email, setEmail] = useState()
+	const [password, setPassword] = useState()
+
+	async function handleSubmit(e) {
+		e.preventDefault()
+		try {
+			await Axios.post('http://localhost:8080/register', { username, email, password })
+			console.log('User was successfully created.')
+		} catch (e) {
+			console.log('There was an error.')
+		}
 	}
 
 	return (
@@ -21,19 +30,19 @@ const HomeGuest = () => {
 							<label htmlFor='username-register' className='text-muted mb-1'>
 								<small>Username</small>
 							</label>
-							<input id='username-register' name='username' className='form-control' type='text' placeholder='Pick a username' autoComplete='off' />
+							<input onChange={(e) => setUsername(e.target.value)} id='username-register' name='username' className='form-control' type='text' placeholder='Pick a username' autoComplete='off' />
 						</div>
 						<div className='form-group'>
 							<label htmlFor='email-register' className='text-muted mb-1'>
 								<small>Email</small>
 							</label>
-							<input id='email-register' name='email' className='form-control' type='text' placeholder='you@example.com' autoComplete='off' />
+							<input onChange={(e) => setEmail(e.target.value)} id='email-register' name='email' className='form-control' type='text' placeholder='you@example.com' autoComplete='off' />
 						</div>
 						<div className='form-group'>
 							<label htmlFor='password-register' className='text-muted mb-1'>
 								<small>Password</small>
 							</label>
-							<input id='password-register' name='password' className='form-control' type='password' placeholder='Create a password' />
+							<input onChange={(e) => setPassword(e.target.value)} id='password-register' name='password' className='form-control' type='password' placeholder='Create a password' />
 						</div>
 						<button type='submit' className='py-3 mt-4 btn btn-lg btn-success btn-block'>
 							Sign up for ComplexApp
@@ -44,8 +53,5 @@ const HomeGuest = () => {
 		</Page>
 	)
 }
-export default HomeGuest
 
-// const handleSubmit = (e) => {
-//     e.preventDefault()
-//     console.log('Hello')
+export default HomeGuest
