@@ -8,7 +8,7 @@ import ExampleContext from '../ExampleContext'
 function CreatePost(props) {
 	const [title, setTitle] = useState()
 	const [body, setBody] = useState()
-	const addFlashMessage = useContext(ExampleContext)
+	const { addFlashMessage } = useContext(ExampleContext)
 
 	async function handleSubmit(e) {
 		e.preventDefault()
