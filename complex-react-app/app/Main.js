@@ -46,7 +46,7 @@ function Main() {
 					<Header />
 					<Switch>
 						<Route path='/' exact>
-							{loggedIn ? <Home /> : <HomeGuest />}
+							{state.loggedIn ? <Home /> : <HomeGuest />}
 						</Route>
 						<Route path='/post/:id'>
 							<ViewSinglePost />

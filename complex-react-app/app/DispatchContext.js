@@ -1,5 +1,5 @@
 import { createContext } from 'react'
 
-const EDispatchContext = createContext()
+const DispatchContext = createContext()
 
 export default DispatchContext
